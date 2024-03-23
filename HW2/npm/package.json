@@ -1,0 +1,19 @@
+{
+  "name": "random_information_test_package",
+  "version": "1.0.0",
+  "description": "Random information generator.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "A.Kooper",
+  "license": "ISC",
+  "dependencies": {
+    "faker": "^6.6.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}
