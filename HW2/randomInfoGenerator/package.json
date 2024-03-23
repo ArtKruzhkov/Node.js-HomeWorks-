@@ -1,5 +1,5 @@
 {
-  "name": "random_info_generator_testpackage",
+  "name": "random_info_generator_packagetest",
   "version": "1.0.0",
   "description": "random information generator",
   "main": "index.js",
