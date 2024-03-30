@@ -9,11 +9,13 @@ const userDBpath = path.join(__dirname, 'users.json');
 
 app.use(express.json());
 
+// Get all users
 app.get('/users', (req, res) => {
     const users = JSON.parse(fs.readFileSync(userDBpath));
     res.send({ users });
 });
 
+// Get user by id
 app.get('/users/:id', checkParams(idScheme), (req, res) => {
     const users = JSON.parse(fs.readFileSync(userDBpath));
     const user = users.find((user) => {
@@ -28,6 +30,7 @@ app.get('/users/:id', checkParams(idScheme), (req, res) => {
     }
 });
 
+// Create user
 app.post('/users', checkBody(userScheme), (req, res) => {
     const users = JSON.parse(fs.readFileSync(userDBpath));
     const maxId = users.reduce((max, user) => Math.max(max, user.id), 0);
@@ -37,6 +40,7 @@ app.post('/users', checkBody(userScheme), (req, res) => {
     res.send({ id: newId });
 });
 
+// Update user
 app.put('/users/:id', checkParams(idScheme), checkBody(userScheme), (req, res) => {
     const users = JSON.parse(fs.readFileSync(userDBpath));
     const user = users.find((user) => {
@@ -55,6 +59,7 @@ app.put('/users/:id', checkParams(idScheme), checkBody(userScheme), (req, res) =
     }
 });
 
+// Delete user
 app.delete('/users/:id', checkParams(idScheme), (req, res) => {
     const users = JSON.parse(fs.readFileSync(userDBpath));
     const user = users.find((user) => {
@@ -69,6 +74,11 @@ app.delete('/users/:id', checkParams(idScheme), (req, res) => {
         res.status(404);
         res.send({ user: null });
     }
+});
+
+// For routes 404
+app.use((req, res) => {
+    res.status(404).send({ message: 'URL not found!' });
 });
 
 const port = 3014;
